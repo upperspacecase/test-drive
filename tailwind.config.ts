@@ -8,14 +8,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: "#F7F4EF",
-        ink: "#111111",
+        paper: "#F5F1EA",
+        ink: "#111112",
+        panel: "#35343A",
+        "panel-line": "#4A484F",
         rust: "#B4552D",
-        mute: "#6B6560",
+        mute: "#6C6760",
+        "mute-light": "#B8B3AC",
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui"],
-        serif: ["Fraunces", "ui-serif", "Georgia"],
+        sans: ["'Inter Tight'", "Inter", "ui-sans-serif", "system-ui"],
+      },
+      letterSpacing: {
+        tightest: "-0.04em",
       },
     },
   },

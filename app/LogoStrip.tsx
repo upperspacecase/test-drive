@@ -1,71 +1,51 @@
-import type { ReactNode } from "react";
+import {
+  siApplepodcasts,
+  siSpotify,
+  siPocketcasts,
+  siOvercast,
+  siYoutubemusic,
+  type SimpleIcon,
+} from "simple-icons/icons";
 
-type Logo = { name: string; svg: ReactNode };
+type Mark = { label: string; icon: SimpleIcon };
 
-const logos: Logo[] = [
-  {
-    name: "Spotify",
-    svg: (
-      <svg viewBox="0 0 120 28" className="h-5" aria-label="Spotify">
-        <text x="0" y="20" fontFamily="Inter, sans-serif" fontSize="20" fontWeight="700" fill="currentColor">Spotify</text>
-      </svg>
-    ),
-  },
-  {
-    name: "Apple Podcasts",
-    svg: (
-      <svg viewBox="0 0 170 28" className="h-5" aria-label="Apple Podcasts">
-        <text x="0" y="20" fontFamily="Inter, sans-serif" fontSize="18" fontWeight="600" fill="currentColor">Apple Podcasts</text>
-      </svg>
-    ),
-  },
-  {
-    name: "Pocket Casts",
-    svg: (
-      <svg viewBox="0 0 150 28" className="h-5" aria-label="Pocket Casts">
-        <text x="0" y="20" fontFamily="Inter, sans-serif" fontSize="18" fontWeight="600" fill="currentColor">Pocket Casts</text>
-      </svg>
-    ),
-  },
-  {
-    name: "Overcast",
-    svg: (
-      <svg viewBox="0 0 110 28" className="h-5" aria-label="Overcast">
-        <text x="0" y="20" fontFamily="Inter, sans-serif" fontSize="18" fontWeight="600" fill="currentColor">Overcast</text>
-      </svg>
-    ),
-  },
-  {
-    name: "Amazon Music",
-    svg: (
-      <svg viewBox="0 0 160 28" className="h-5" aria-label="Amazon Music">
-        <text x="0" y="20" fontFamily="Inter, sans-serif" fontSize="18" fontWeight="600" fill="currentColor">Amazon Music</text>
-      </svg>
-    ),
-  },
-  {
-    name: "YouTube Music",
-    svg: (
-      <svg viewBox="0 0 165 28" className="h-5" aria-label="YouTube Music">
-        <text x="0" y="20" fontFamily="Inter, sans-serif" fontSize="18" fontWeight="600" fill="currentColor">YouTube Music</text>
-      </svg>
-    ),
-  },
+const marks: Mark[] = [
+  { label: "Apple Podcasts", icon: siApplepodcasts },
+  { label: "Spotify", icon: siSpotify },
+  { label: "Pocket Casts", icon: siPocketcasts },
+  { label: "Overcast", icon: siOvercast },
+  { label: "YouTube Music", icon: siYoutubemusic },
 ];
+
+function LogoMark({ mark }: { mark: Mark }) {
+  return (
+    <div className="flex items-center gap-2.5 text-ink/80" aria-label={mark.label}>
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-6 w-6"
+        fill="currentColor"
+      >
+        <title>{mark.icon.title}</title>
+        <path d={mark.icon.path} />
+      </svg>
+      <span className="text-sm font-semibold">{mark.label}</span>
+    </div>
+  );
+}
 
 export function LogoStrip() {
   return (
-    <div className="flex flex-col gap-6 items-center">
-      <p className="text-sm text-mute uppercase tracking-widest">
-        Your podcast will live here eventually
-      </p>
-      <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4 text-mute">
-        {logos.map((l) => (
-          <div key={l.name} className="opacity-70 hover:opacity-100 transition-opacity">
-            {l.svg}
-          </div>
+    <div className="flex flex-col items-center gap-5">
+      <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
+        {marks.map((m) => (
+          <LogoMark key={m.label} mark={m} />
         ))}
       </div>
+      <p className="text-sm text-mute">
+        Practice for the platforms you aspire to join. Not affiliated.
+      </p>
     </div>
   );
 }
